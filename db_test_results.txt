@@ -1,0 +1,39 @@
+
+--------------------------------------------------------------------------------
+(4 threads, 20 requests) - all clocked as wall time
+4GB RAM, x86_64 Intel(R) Celeron(R) CPU J3455 @ 1.50GHz
+--------------------------------------------------------------------------------
+Previous Version
+--------------------------------------------------------------------------------
+uncached queries: 13.7756 secs
+all cached:       6.77151 secs
+mixed 1/2 each:   7.49875 secs
+--------------------------------------------------------------------------------
+New Version
+--------------------------------------------------------------------------------
+SQLITE3 - no cache file (embeddings directly in DB)
+uncached queries: 17.552 secs
+all cached:       0.538433 secs
+mixed 1/2 each:   12.021 secs
+
+SQLITE3 - with cache file (no transactions)
+uncached queries: 13.262 secs
+all cached:       0.261639 secs
+mixed 1/2 each:   10.8224 secs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SQLITE3 - with transactions (& separate commit process)
+commit interval: 10, per worker queue: 9, db_commit_proc_sleep: 0.001s
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+uncached queries: 16.0796 secs
+all cached:       0.263569 secs
+mixed 1/2 each:   6.25323 secs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SQLITE3 - with transactions (& separate commit process)
+** 3 workers instead of 4 (loading 4 models can go to swap) **
+commit interval: 10, per worker queue: 15, db_commit_proc_sleep: 0.005s
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+uncached queries: 13.7132 secs
+all cached:       0.26236  secs
+mixed 1/2 each:   4.3427  secs   ¯\_('~')_/¯
+--------------------------------------------------------------------------------
+
